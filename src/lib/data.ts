@@ -88,8 +88,8 @@ export const projects: Project[] = [
             backend: ["Node.js", "Express", "Socket.io", "MongoDB"],
             tools: ["WebRTC", "JWT", "Firebase Cloud Messaging"]
         },
-        challenges: "Implementing real-time video calling with WebRTC while ensuring low latency and handling network fluctuations was the biggest challenge. I had to optimize the signaling server and implement robust error handling for call disconnections.",
-        learnings: "This project deepened my understanding of real-time communication protocols, WebRTC architecture, and mobile app performance optimization. I learned how to handle complex state management in chat applications and implement secure authentication flows."
+        challenges: "Implementing real-time video calling with WebRTC while ensuring low latency and handling network fluctuations was the biggest challenge.",
+        learnings: "This project deepened my understanding of real-time communication protocols, WebRTC architecture, and mobile app performance optimization."
     },
     {
         id: "2",
@@ -140,8 +140,130 @@ export const projects: Project[] = [
         },
         challenges: "Working in a two-member team to deploy updates and fix bugs in a live production environment required careful coordination and robust testing practices.",
         learnings: "This project enhanced my skills in team collaboration, production deployment workflows, and maintaining code quality in a fast-paced development environment."
+    },
+    {
+        id: "4",
+        slug: "ds-steinteppich",
+        title: "DS-Steinteppich",
+        shortDescription: "A flooring-renovation service site offering seamless stone-carpet solutions for indoor & outdoor floors.",
+        fullDescription: "Built a modern, SEO-optimized website to present and market professional stone-carpet renovation services for balconies, terraces, stairs, garages and more. The site shows service offerings, before/after galleries, and facilitates contact requests for renovation jobs. Focused on a clean, performant, and responsive UI to attract customers, and integrated a contact form for leads.",
+        image: "/images/projects/ds-steinteppich.png",
+        tags: ["Next.js", "TypeScript", "Tailwind CSS", "Docker", "SEO", "SSR"],
+        liveUrl: "https://ds-steinteppich.de/",
+        features: [
+            "Service showcase for indoor and outdoor flooring renovation",
+            "Before/after gallery",
+            "Responsive multi-page design",
+            "Contact form for renovation inquiries",
+            "SEO optimization for German market",
+            "Performance and Core Web Vitals improvements"
+        ],
+        techStack: {
+            frontend: ["Next.js", "TypeScript", "Tailwind CSS"],
+            backend: ["Next.js API Routes", "Nodemailer"],
+            tools: ["Docker", "GitHub Actions", "SEO Tools"]
+        },
+        challenges: "Migrating a legacy PHP structure while modernizing the UI and ensuring zero downtime during deployment.",
+        learnings: "Strengthened skills in SSR, Docker workflows, and structuring scalable Next.js projects."
+    },
+    {
+        id: "5",
+        slug: "zweibay",
+        title: "Zweibay",
+        shortDescription: "A responsive platform for buying, selling, and repairing electronics, targeting the German market.",
+        fullDescription: "Developed a clean, responsive website aiming to facilitate electronics trading and repair services — helping users buy, sell or get repair support for devices. Designed for clarity, ease-of-use, and quick navigation to support seamless transactions and service inquiries.",
+        image: "/images/projects/zweibay.png",
+        tags: ["Next.js", "TypeScript", "Tailwind CSS", "SEO"],
+        liveUrl: "https://zweibay-kb.vercel.app/",
+        features: [
+            "Responsive layout optimized for German users",
+            "Service/product listing and repair service flow",
+            "Clean UI focused on conversions",
+            "SEO and performance optimization",
+            "Contact/Inquiry forms"
+        ],
+        techStack: {
+            frontend: ["Next.js", "TypeScript", "Tailwind CSS"],
+            backend: ["Next.js API Routes"],
+            tools: ["SEO Tools", "Vercel Analytics"]
+        },
+        challenges: "Structuring a smooth navigation and service flow for both buying/selling and repair services.",
+        learnings: "Enhanced skills in UX design for service-based marketplaces and responsive web development."
+    },
+    {
+        id: "6",
+        slug: "lyfsmile-kids",
+        title: "Lyfsmile Kids",
+        shortDescription: "A child therapy platform offering accessible mental-health services across India.",
+        fullDescription: "Created a responsive, approachable website for child therapy services — featuring information on therapy programs, counseling support, and resources for parents seeking help for anxiety, behavioral issues, ADHD or social-media addiction in children. Emphasized a warm, trust-building UI, performance, and accessibility to reach a wide audience.",
+        image: "/images/projects/lyfsmile-kids.png",
+        tags: ["Next.js", "TypeScript", "Tailwind CSS", "SEO"],
+        liveUrl: "https://lyfsmile-kids-kb.vercel.app/",
+        features: [
+            "Therapy service presentation and program listings",
+            "Mobile-first responsive design",
+            "User-friendly navigation for parents",
+            "Performance and SEO optimization",
+            "Clear content structure for mental health support"
+        ],
+        techStack: {
+            frontend: ["Next.js", "TypeScript", "Tailwind CSS"],
+            backend: ["Next.js API Routes"],
+            tools: ["SEO Tools"]
+        },
+        challenges: "Designing a trustworthy, child- and parent-friendly UI while keeping performance high.",
+        learnings: "Gained experience in emotional and accessible design for wellness platforms."
+    },
+    {
+        id: "7",
+        slug: "pcbeheben",
+        title: "PC Beheben",
+        shortDescription: "A service booking platform for computer hardware and software repair help.",
+        fullDescription: "Developed a user-centric website that allows visitors to book expert assistance for hardware and software issues. Designed intuitive service flows, clear service descriptions, and performance-optimized pages to deliver a seamless user experience for users needing tech support.",
+        image: "/images/projects/pcbeheben.png",
+        tags: ["Next.js", "TypeScript", "Tailwind CSS", "SEO"],
+        liveUrl: "https://pcbeheben.de/",
+        features: [
+            "Service listing for hardware/software repair",
+            "Easy appointment booking flow",
+            "Mobile-optimized layout",
+            "Fast load times with optimized assets",
+            "User-centered design for service seekers"
+        ],
+        techStack: {
+            frontend: ["Next.js", "TypeScript", "Tailwind CSS"],
+            backend: ["Next.js API Routes"],
+            tools: ["SEO Tools", "Vercel"]
+        },
+        challenges: "Designing a simple booking experience accessible to non-technical users.",
+        learnings: "Learned the importance of clarity, minimalism, and trust-building in service-based websites."
+    },
+    {
+        id: "8",
+        slug: "lyfsmile",
+        title: "Lyfsmile",
+        shortDescription: "A wellness and therapy platform providing mental health services with a modern, accessible UX.",
+        fullDescription: "Built a responsive, performance-optimized mental health and wellness website offering therapy services and wellness resources. The site features structured content layouts, clear navigation, and strong SEO to improve visibility and accessibility for users seeking professional help.",
+        image: "/images/projects/lyfsmile.png",
+        tags: ["Next.js", "TypeScript", "Tailwind CSS", "SEO"],
+        liveUrl: "https://lyfsmile.com/",
+        features: [
+            "Therapy and wellness service descriptions",
+            "Warm, approachable interface",
+            "Responsive, fast-loading design",
+            "SEO-optimized content structure",
+            "Optimized images and UI components"
+        ],
+        techStack: {
+            frontend: ["Next.js", "TypeScript", "Tailwind CSS"],
+            backend: ["Next.js API Routes"],
+            tools: ["SEO Tools", "Vercel"]
+        },
+        challenges: "Creating a safe, trust-building design language for users seeking mental health support.",
+        learnings: "Strengthened skills in emotional design, accessibility, and structured content for wellness platforms."
     }
 ];
+
 
 export const getProjectBySlug = (slug: string): Project | undefined => {
     return projects.find((project) => project.slug === slug);
@@ -193,8 +315,6 @@ export const skillCategories: SkillCategory[] = [
             "GitLab",
             "Vercel",
             "Netlify",
-            "AWS",
-            "Kubernetes",
             "Postman",
             "VS Code"
         ]
