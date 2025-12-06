@@ -97,7 +97,7 @@ export const projects: Project[] = [
         title: "Renovlange.de",
         shortDescription: "A German stone flooring company website with modern design and CMS integration.",
         fullDescription: "Developed a professional website for a German-based stone flooring company. The site showcases their products and services with a clean, modern design and includes a content management system for easy updates.",
-        image: "https://cdn.sanity.io/images/6n5978hs/production/f637b8b2eac96fbb5e4667086e25be1648d931d2-1919x866.png",
+        image: "/images/projects/renovlange.jpg",
         tags: ["Next.js", "TypeScript", "Tailwind CSS", "Sanity CMS", "SEO"],
         liveUrl: "https://renovlange.de/",
         features: [
@@ -122,7 +122,7 @@ export const projects: Project[] = [
         title: "Beyond Just Work",
         shortDescription: "A company website with dynamic content and modern UI components.",
         fullDescription: "Contributed to building and maintaining production features for the Beyond Just Work website, improving user experience and navigation flow. Implemented responsive UI components and integrated APIs for dynamic data rendering.",
-        image: "https://cdn.sanity.io/images/6n5978hs/production/3523fcafda863f2f8e9ddfa51aa6ab48c3a46907-1918x864.png",
+        image: "/images/projects/beyond-just-work.png",
         tags: ["Next.js", "TypeScript", "Tailwind CSS", "API Integration"],
         liveUrl: "https://beyondjustwork.com/",
         features: [
@@ -147,7 +147,7 @@ export const projects: Project[] = [
         title: "DS-Steinteppich",
         shortDescription: "A flooring-renovation service site offering seamless stone-carpet solutions for indoor & outdoor floors.",
         fullDescription: "Built a modern, SEO-optimized website to present and market professional stone-carpet renovation services for balconies, terraces, stairs, garages and more. The site shows service offerings, before/after galleries, and facilitates contact requests for renovation jobs. Focused on a clean, performant, and responsive UI to attract customers, and integrated a contact form for leads.",
-        image: "/images/projects/ds-steinteppich.png",
+        image: "/images/projects/ds-steinteppich.jpg",
         tags: ["Next.js", "TypeScript", "Tailwind CSS", "Docker", "SEO", "SSR"],
         liveUrl: "https://ds-steinteppich.de/",
         features: [
@@ -196,7 +196,7 @@ export const projects: Project[] = [
         title: "Lyfsmile Kids",
         shortDescription: "A child therapy platform offering accessible mental-health services across India.",
         fullDescription: "Created a responsive, approachable website for child therapy services — featuring information on therapy programs, counseling support, and resources for parents seeking help for anxiety, behavioral issues, ADHD or social-media addiction in children. Emphasized a warm, trust-building UI, performance, and accessibility to reach a wide audience.",
-        image: "/images/projects/lyfsmile-kids.png",
+        image: "/images/projects/lyfsmile-kids.webp",
         tags: ["Next.js", "TypeScript", "Tailwind CSS", "SEO"],
         liveUrl: "https://lyfsmile-kids-kb.vercel.app/",
         features: [
@@ -220,7 +220,7 @@ export const projects: Project[] = [
         title: "PC Beheben",
         shortDescription: "A service booking platform for computer hardware and software repair help.",
         fullDescription: "Developed a user-centric website that allows visitors to book expert assistance for hardware and software issues. Designed intuitive service flows, clear service descriptions, and performance-optimized pages to deliver a seamless user experience for users needing tech support.",
-        image: "/images/projects/pcbeheben.png",
+        image: "/images/projects/pc-beheben.png",
         tags: ["Next.js", "TypeScript", "Tailwind CSS", "SEO"],
         liveUrl: "https://pcbeheben.de/",
         features: [
@@ -244,7 +244,7 @@ export const projects: Project[] = [
         title: "Lyfsmile",
         shortDescription: "A wellness and therapy platform providing mental health services with a modern, accessible UX.",
         fullDescription: "Built a responsive, performance-optimized mental health and wellness website offering therapy services and wellness resources. The site features structured content layouts, clear navigation, and strong SEO to improve visibility and accessibility for users seeking professional help.",
-        image: "/images/projects/lyfsmile.png",
+        image: "/images/projects/lyfsmile.jpg",
         tags: ["Next.js", "TypeScript", "Tailwind CSS", "SEO"],
         liveUrl: "https://lyfsmile.com/",
         features: [

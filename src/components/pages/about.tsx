@@ -84,6 +84,28 @@ const About = () => {
                                             <span>June 2023 - June 2026</span>
                                         </div>
                                     </div>
+                                    {/* ================================================ */}
+                                    <div className="border-l-2 border-primary pl-4">
+                                        <h4 className="font-medium text-foreground">
+                                            Full stack Web development
+                                        </h4>
+                                        <p className="text-sm text-muted-foreground">Dice academy</p>
+                                        <div className="flex items-center gap-1 text-sm text-muted-foreground mt-1">
+                                            <Calendar size={14} />
+                                            <span>2023 August to 2024 August</span>
+                                        </div>
+                                    </div>
+                                    {/* ================================================ */}
+                                    <div className="border-l-2 border-primary pl-4">
+                                        <h4 className="font-medium text-foreground">
+                                            12th
+                                        </h4>
+                                        <p className="text-sm text-muted-foreground">Munirka, Sarvodaya (Co-ed) SS Senior Secondary School</p>
+                                        <div className="flex items-center gap-1 text-sm text-muted-foreground mt-1">
+                                            <Calendar size={14} />
+                                            <span>2023</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </AnimatedSection>
