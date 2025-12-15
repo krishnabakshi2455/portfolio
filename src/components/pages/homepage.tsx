@@ -58,7 +58,7 @@ const Homepage = () => {
                                 View My Work <ArrowRight size={18} />
                             </Link>
                             <a
-                                href="file:///C:/Users/Lenovo/Downloads/KrishnaBakshiResume.pdf.pdf"
+                                href="/images/KrishnaBakshiResume.pdf"
                                 download
                                 className="inline-flex items-center gap-2 px-6 py-3 bg-secondary text-secondary-foreground rounded-full font-medium hover:bg-secondary/80 transition-all duration-300"
                             >
