@@ -85,7 +85,7 @@ const Header = () => {
                     >
                         Projects
                     </Link>
-                    <Link
+                    {/* <Link
                         href={Routes.freelance}
                         className={cn(
                             "relative px-4 py-2 text-sm font-medium transition-colors rounded-full",
@@ -95,7 +95,7 @@ const Header = () => {
                         )}
                     >
                         Freelance
-                    </Link>
+                    </Link> */}
                     <Link
                         href={Routes.contact}
                         className={cn(
@@ -180,7 +180,7 @@ const Header = () => {
                                         Projects
                                     </Link>
                                 </motion.div>
-                                <motion.div
+                                {/* <motion.div
                                     initial={{ opacity: 0, x: -20 }}
                                     animate={{ opacity: 1, x: 0 }}
                                     transition={{ delay: 0.15 }}
@@ -196,7 +196,7 @@ const Header = () => {
                                     >
                                         Freelance
                                     </Link>
-                                </motion.div>
+                                </motion.div> */}
                                 <motion.div
                                     initial={{ opacity: 0, x: -20 }}
                                     animate={{ opacity: 1, x: 0 }}

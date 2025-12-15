@@ -73,7 +73,7 @@ export const projects: Project[] = [
         fullDescription: "Built a comprehensive real-time mobile chat application supporting text messaging, media sharing, and secure authentication. The app features WebRTC integration for live video and audio communication, providing a seamless communication experience across devices.",
         image: "https://images.unsplash.com/photo-1611746872915-64382b5c76da?w=800&auto=format&fit=crop",
         tags: ["React Native", "WebRTC", "Node.js", "JWT", "Socket.io", "MongoDB"],
-        githubUrl: "https://github.com/krishnabakshi2455",
+        liveUrl: "https://expo.dev/artifacts/eas/xxNSc9Dey417p1onyoK977.apk",
         features: [
             "Real-time messaging with Socket.io",
             "Video and audio calls via WebRTC",
