@@ -81,13 +81,31 @@ const Contact = () => {
         e.preventDefault();
         setIsSubmitting(true);
 
-        // Simulate form submission
-        await new Promise((resolve) => setTimeout(resolve, 1000));
+        try {
+            const response = await fetch('/api/email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
 
-        toast("Thank you for reaching out. I'll get back to you soon.");
+            const data = await response.json();
 
-        setFormData({ name: "", email: "", subject: "", message: "" });
-        setIsSubmitting(false);
+            if (response.ok) {
+                toast.success("Thank you for reaching out! I'll get back to you soon.");
+                setFormData({ name: "", email: "", subject: "", message: "" });
+            } else {
+                toast.error(data.error || "Failed to send message. Please try again.");
+            }
+        } catch (error) {
+            console.error('Error submitting form:', error);
+            setFormData({ name: "", email: "", subject: "", message: "" });
+            toast.error("An error occurred. Please try again later.");
+        } finally {
+            setIsSubmitting(false);
+            setFormData({ name: "", email: "", subject: "", message: "" });
+        }
     };
 
     return (
@@ -134,7 +152,7 @@ const Contact = () => {
                                         <AnimatedSection key={item.label} delay={index * 0.1}>
                                             <div className="flex items-center gap-4 p-4 bg-card rounded-xl border border-border hover:border-primary/50 transition-colors">
                                                 <div className="p-3 bg-primary/10 rounded-full">
-                                                    <Icon size={20}  />
+                                                    <Icon size={20} />
                                                 </div>
                                                 <div>
                                                     <p className="text-sm text-muted-foreground">{item.label}</p>
