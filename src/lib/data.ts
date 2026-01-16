@@ -71,9 +71,9 @@ export const projects: Project[] = [
         title: "Gigga-Chat",
         shortDescription: "A real-time mobile chat application with video calling and secure authentication.",
         fullDescription: "Built a comprehensive real-time mobile chat application supporting text messaging, media sharing, and secure authentication. The app features WebRTC integration for live video and audio communication, providing a seamless communication experience across devices.",
-        image: "https://expo.dev/artifacts/eas/x3Y1HVYtPeW68bNkk53Vmi.apk",
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop",
         tags: ["React Native", "WebRTC", "Node.js", "JWT", "Socket.io", "MongoDB"],
-        liveUrl: "https://expo.dev/artifacts/eas/xxNSc9Dey417p1onyoK977.apk",
+        liveUrl: "https://expo.dev/artifacts/eas/x3Y1HVYtPeW68bNkk53Vmi.apk",
         features: [
             "Real-time messaging with Socket.io",
             "Video and audio calls via WebRTC",

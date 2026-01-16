@@ -82,7 +82,7 @@ const Contact = () => {
         setIsSubmitting(true);
 
         try {
-            const response = await fetch('/api/email', {
+            const response = await fetch('/api/submit', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
