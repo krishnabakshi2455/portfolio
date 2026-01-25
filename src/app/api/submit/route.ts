@@ -30,7 +30,7 @@ export async function POST(req: any) {
 
     // Load sheet and prepare data
     await doc.loadInfo();
-    const sheet = doc.sheetsByTitle['portfoliodata'];
+    const sheet = doc.sheetsByTitle['Sheet1'];
 
     const createdAt = format(
       new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' })),

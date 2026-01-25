@@ -22,6 +22,7 @@ interface SocialLink {
 interface FormData {
     name: string;
     email: string;
+    phone: string;
     subject: string;
     message: string;
 }
@@ -65,6 +66,7 @@ const Contact = () => {
     const [formData, setFormData] = useState<FormData>({
         name: "",
         email: "",
+        phone: "",
         subject: "",
         message: "",
     });
@@ -94,17 +96,17 @@ const Contact = () => {
 
             if (response.ok) {
                 toast.success("Thank you for reaching out! I'll get back to you soon.");
-                setFormData({ name: "", email: "", subject: "", message: "" });
+                setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
             } else {
                 toast.error(data.error || "Failed to send message. Please try again.");
             }
         } catch (error) {
             console.error('Error submitting form:', error);
-            setFormData({ name: "", email: "", subject: "", message: "" });
+            setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
             toast.error("An error occurred. Please try again later.");
         } finally {
             setIsSubmitting(false);
-            setFormData({ name: "", email: "", subject: "", message: "" });
+            setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
         }
     };
 
@@ -243,20 +245,36 @@ const Contact = () => {
                                         </div>
                                     </div>
 
-                                    <div>
-                                        <label htmlFor="subject" className="block text-sm font-medium text-foreground mb-2">
-                                            Subject
-                                        </label>
-                                        <input
-                                            type="text"
-                                            id="subject"
-                                            name="subject"
-                                            value={formData.subject}
-                                            onChange={handleChange}
-                                            required
-                                            className="w-full px-4 py-3 bg-background border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
-                                            placeholder="Project Inquiry"
-                                        />
+                                    <div className="grid md:grid-cols-2 gap-6">
+                                        <div>
+                                            <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2">
+                                                Phone Number
+                                            </label>
+                                            <input
+                                                type="tel"
+                                                id="phone"
+                                                name="phone"
+                                                value={formData.phone}
+                                                onChange={handleChange}
+                                                className="w-full px-4 py-3 bg-background border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
+                                                placeholder="+91 1234567890"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label htmlFor="subject" className="block text-sm font-medium text-foreground mb-2">
+                                                Subject
+                                            </label>
+                                            <input
+                                                type="text"
+                                                id="subject"
+                                                name="subject"
+                                                value={formData.subject}
+                                                onChange={handleChange}
+                                                required
+                                                className="w-full px-4 py-3 bg-background border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
+                                                placeholder="Project Inquiry"
+                                            />
+                                        </div>
                                     </div>
 
                                     <div>
