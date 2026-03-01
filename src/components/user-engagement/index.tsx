@@ -33,12 +33,12 @@ export default function UserEngagement() {
                     {/* PopUp */}
                     {/* <PopUp open={popupOpen} onOpenChange={setPopupOpen} /> */}
                     {/* Chatbot */}
-                    <div className="hidden sm:block">
+                    <div >
                         <Chatbot open={chatbotOpen} onOpenChange={setChatbotOpen} />
                     </div>
-                    <a href="tel:+918743809657" className="fixed z-40 sm:hidden bottom-5 right-5 w-14 h-14 p-3 bg-green-600 text-white rounded-full shadow">
+                    {/* <a href="tel:+918743809657" className="fixed z-40 sm:hidden bottom-5 right-5 w-14 h-14 p-3 bg-green-600 text-white rounded-full shadow">
                         <Phone className="w-full h-full" />
-                    </a>
+                    </a> */}
                 </>
         
 
