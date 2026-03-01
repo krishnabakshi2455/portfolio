@@ -3,66 +3,16 @@ import { FreelanceWork, Project, SkillCategory } from "./types";
 export const freelanceWorks: FreelanceWork[] = [
     {
         id: "1",
-        title: "Full-Stack Developer",
-        company: "Kreative Werbung",
-        description: "Working on full-stack application development, contributing to improved user experience and reliable feature delivery. Building responsive interfaces with Next.js and TypeScript while managing deployments with Docker and CI/CD pipelines.",
-        period: "June 2025 - Present",
-        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop",
-        tags: ["Next.js", "TypeScript", "Docker", "CI/CD", "PostgreSQL", "MongoDB"],
+        title: "",
+        company: "",
+        description: "",
+        period: "",
+        image: "",
+        tags: [],
         highlights: [
-            "Built responsive front-end interfaces with Next.js and TypeScript",
-            "Deployed applications using Docker, Portainer, and Woodpecker CI",
-            "Integrated SQL and MongoDB databases for efficient data management",
-            "Collaborated with cross-functional teams for feature delivery"
+            
         ]
     },
-    {
-        id: "2",
-        title: "Full-Stack Developer Intern",
-        company: "Kreative Werbung",
-        description: "Developed full-stack applications and built backend APIs with Node.js, Express, and Prisma. Utilized headless CMS solutions to enable non-technical team members to manage content efficiently.",
-        period: "November 2024 - May 2025",
-        image: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&auto=format&fit=crop",
-        tags: ["Next.js", "Node.js", "Express", "Prisma", "Sanity", "Directus"],
-        highlights: [
-            "Developed full-stack applications using Next.js and TypeScript",
-            "Built backend APIs with Node.js, Express, and Prisma",
-            "Integrated Sanity and Directus CMS for content management",
-            "Fixed bugs and deployed updates in production environment"
-        ]
-    },
-    {
-        id: "3",
-        title: "Renovlange Website",
-        company: "Freelance Project",
-        description: "Designed and developed a complete website for a German stone flooring company. Implemented SEO best practices and integrated a content management system for easy updates.",
-        period: "2024",
-        image: "https://cdn.sanity.io/images/6n5978hs/production/f637b8b2eac96fbb5e4667086e25be1648d931d2-1919x866.png",
-        liveUrl: "https://renovlange.de/",
-        tags: ["Next.js", "Sanity CMS", "SEO", "Tailwind CSS"],
-        highlights: [
-            "Complete website design and development",
-            "German market SEO optimization",
-            "Sanity CMS integration for content management",
-            "Responsive design for all devices"
-        ]
-    },
-    {
-        id: "4",
-        title: "Beyond Just Work Website",
-        company: "Freelance Project",
-        description: "Contributed to building production features for a company website, implementing responsive UI components and API integrations for dynamic content rendering.",
-        period: "2024",
-        image: "https://cdn.sanity.io/images/6n5978hs/production/3523fcafda863f2f8e9ddfa51aa6ab48c3a46907-1918x864.png",
-        liveUrl: "https://beyondjustwork.com/",
-        tags: ["Next.js", "TypeScript", "API Integration", "Tailwind CSS"],
-        highlights: [
-            "Built responsive UI components",
-            "Integrated APIs for dynamic content",
-            "Deployed updates in production environment",
-            "Enhanced user experience and navigation"
-        ]
-    }
 ];
 export const projects: Project[] = [
     {
@@ -73,7 +23,7 @@ export const projects: Project[] = [
         fullDescription: "Built a comprehensive real-time mobile chat application supporting text messaging, media sharing, and secure authentication. The app features WebRTC integration for live video and audio communication, providing a seamless communication experience across devices.",
         image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop",
         tags: ["React Native", "WebRTC", "Node.js", "JWT", "Socket.io", "MongoDB"],
-        liveUrl: "https://expo.dev/artifacts/eas/x3Y1HVYtPeW68bNkk53Vmi.apk",
+        liveUrl: "https://github.com/krishnabakshi2455/gigga-chat-frontend",
         features: [
             "Real-time messaging with Socket.io",
             "Video and audio calls via WebRTC",
@@ -98,19 +48,19 @@ export const projects: Project[] = [
         shortDescription: "A German stone flooring company website with modern design and CMS integration.",
         fullDescription: "Developed a professional website for a German-based stone flooring company. The site showcases their products and services with a clean, modern design and includes a content management system for easy updates.",
         image: "/images/projects/renovlange.jpg",
-        tags: ["Next.js", "TypeScript", "Tailwind CSS", "Sanity CMS", "SEO"],
+        tags: ["Next.js", "TypeScript", "Tailwind CSS", "DirectUs CMS", "SEO"],
         liveUrl: "https://renovlange.de/",
         features: [
             "Responsive multi-page design",
             "Product showcase gallery",
             "Contact form with email integration",
             "SEO optimized for German market",
-            "Sanity CMS for content management",
+            "DirectUs CMS for content management",
             "Performance optimized images"
         ],
         techStack: {
             frontend: ["Next.js", "TypeScript", "Tailwind CSS"],
-            backend: ["Sanity CMS", "Vercel"],
+            backend: ["DirectUs CMS", "Vercel"],
             tools: ["SEO Tools", "Google Analytics"]
         },
         challenges: "Optimizing the website for German SEO while maintaining fast load times with high-quality product images required careful image optimization and strategic content structuring.",
@@ -304,7 +254,7 @@ export const skillCategories: SkillCategory[] = [
     },
     {
         name: "Databases",
-        skills: ["MongoDB", "PostgreSQL", "Firebase", "Sanity", "Directus"]
+        skills: ["MongoDB", "PostgreSQL", "Firebase", "Directus"]
     },
     {
         name: "Tools & Technologies",
