@@ -10,7 +10,7 @@ export const freelanceWorks: FreelanceWork[] = [
         image: "",
         tags: [],
         highlights: [
-            
+
         ]
     },
 ];
@@ -23,7 +23,7 @@ export const projects: Project[] = [
         fullDescription: "Built a comprehensive real-time mobile chat application supporting text messaging, media sharing, and secure authentication. The app features WebRTC integration for live video and audio communication, providing a seamless communication experience across devices.",
         image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop",
         tags: ["React Native", "WebRTC", "Node.js", "JWT", "Socket.io", "MongoDB"],
-        liveUrl: "https://github.com/krishnabakshi2455/gigga-chat-frontend",
+        liveUrl: "https://expo.dev/artifacts/eas/g1UEJPRmbjV6WyAidyt1NX.apk",
         features: [
             "Real-time messaging with Socket.io",
             "Video and audio calls via WebRTC",
