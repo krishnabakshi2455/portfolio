@@ -10,7 +10,7 @@ import SkillBadge from "../projects/SkillBadge";
 import AnimatedSection from "../ui/AnimatedSection";
 import TypewriterText from "../ui/TypewriterText";
 
-const roles = ["Full Stack Developer", "Next-js Developer", "Mobile App Developer","Software Developer"];
+const roles = ["Full Stack Developer", "Next-js Developer", "Mobile App Developer", "Software Developer"];
 
 const Homepage = () => {
     return (
@@ -58,7 +58,7 @@ const Homepage = () => {
                                 View My Work <ArrowRight size={18} />
                             </Link>
                             <a
-                                href="/images/krishnabakshi.resume.pdf"
+                                href="/images/krishnabakshi-resume.pdf"
                                 download
                                 className="inline-flex items-center gap-2 px-6 py-3 bg-secondary text-secondary-foreground rounded-full font-medium hover:bg-secondary/80 transition-all duration-300"
                             >
@@ -166,7 +166,7 @@ const Homepage = () => {
                 </div>
             </section>
 
-          
+
         </>
     );
 };

@@ -17,29 +17,78 @@ export const freelanceWorks: FreelanceWork[] = [
 export const projects: Project[] = [
     {
         id: "1",
-        slug: "gigga-chat",
-        title: "Gigga-Chat",
-        shortDescription: "A real-time mobile chat application with video calling and secure authentication.",
-        fullDescription: "Built a comprehensive real-time mobile chat application supporting text messaging, media sharing, and secure authentication. The app features WebRTC integration for live video and audio communication, providing a seamless communication experience across devices.",
-        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop",
-        tags: ["React Native", "WebRTC", "Node.js", "JWT", "Socket.io", "MongoDB"],
-        liveUrl: "https://expo.dev/artifacts/eas/g1UEJPRmbjV6WyAidyt1NX.apk",
-        features: [
-            "Real-time messaging with Socket.io",
-            "Video and audio calls via WebRTC",
-            "Media sharing (images, videos, documents)",
-            "JWT-based secure authentication",
-            "Push notifications",
-            "Message read receipts and typing indicators",
-            "Cross-platform support (Android/iOS)"
+        slug: "educast",
+        title: "EduCast",
+        shortDescription: "A multi-tenant school content broadcasting and management platform for Principals, Teachers, and Students.",
+
+        fullDescription:
+            "EduCast is a scalable educational content management platform designed for schools. The system enables Principals to create and manage schools, generate classes and sections, onboard teachers and students, assign subjects, and monitor platform-wide activity. Teachers can upload educational content, schedule learning materials, and manage class-specific resources, while students receive personalized content feeds based on their assigned classes. The platform includes school-scoped authentication, role-based access control, content approval workflows, analytics dashboards, and support for multimedia educational content.",
+
+        image: "/images/projects/educast.png",
+
+        tags: [
+            "Node.js",
+            "TypeScript",
+            "Express.js",
+            "PostgreSQL",
+            "Prisma",
+            "Redis",
+            "JWT",
+            "Cloudflare R2",
+            "Zod",
+            "Multi-Tenant SaaS"
         ],
+
+        liveUrl: "https://educast-frontend.vercel.app/onboarding",
+
+        features: [
+            "Multi-tenant school architecture with isolated school data",
+            "School onboarding with auto-generated School IDs",
+            "Role-based authentication for Principals, Teachers, and Students",
+            "Class and section generation system",
+            "Teacher-to-class subject assignment management",
+            "Educational content upload and distribution",
+            "Content approval workflow for Principals",
+            "Student-specific content feeds",
+            "Content scheduling and rotation engine",
+            "School-wide analytics dashboards",
+            "JWT authentication with refresh token rotation",
+            "Cloud file storage support with multimedia uploads",
+            "School-scoped user and content management"
+        ],
+
         techStack: {
-            frontend: ["React Native", "TypeScript", "Redux Toolkit"],
-            backend: ["Node.js", "Express", "Socket.io", "MongoDB"],
-            tools: ["WebRTC", "JWT", "Firebase Cloud Messaging"]
+            frontend: [
+                "React",
+                "TypeScript",
+                "TanStack Query",
+                "Zustand",
+                "Axios",
+                "Tailwind CSS"
+            ],
+            backend: [
+                "Node.js",
+                "Express.js",
+                "TypeScript",
+                "PostgreSQL",
+                "Prisma ORM",
+                "Redis"
+            ],
+            tools: [
+                "JWT Authentication",
+                "Cloudflare R2",
+                "Zod Validation",
+                "Winston Logger",
+                "pnpm",
+                "Docker"
+            ]
         },
-        challenges: "Implementing real-time video calling with WebRTC while ensuring low latency and handling network fluctuations was the biggest challenge.",
-        learnings: "This project deepened my understanding of real-time communication protocols, WebRTC architecture, and mobile app performance optimization."
+
+        challenges:
+            "Designing a secure multi-tenant architecture where every school operates as a completely isolated tenant while maintaining efficient authentication, role-based access control, content approval workflows, and scalable content delivery across multiple user roles.",
+
+        learnings:
+            "This project strengthened my understanding of multi-tenant SaaS architecture, authentication and authorization patterns, database modeling with Prisma, scalable backend design, content management workflows, and building role-driven systems for real-world educational institutions."
     },
     {
         id: "2",
@@ -211,7 +260,8 @@ export const projects: Project[] = [
         },
         challenges: "Creating a safe, trust-building design language for users seeking mental health support.",
         learnings: "Strengthened skills in emotional design, accessibility, and structured content for wellness platforms."
-    }
+    },
+
 ];
 
 
