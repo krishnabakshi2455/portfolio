@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import * as ScrollAreaPrimitive from "@radix-ui/react-scroll-area"
 import { PaperPlaneIcon, Cross2Icon } from "@radix-ui/react-icons";
-import { useAtom } from "jotai";
+import { useAtom, useSetAtom } from "jotai";
 
 type flowNode = {
     message?: string,
@@ -20,7 +20,6 @@ type flowNode = {
     next?: string | ((value: any) => string),
     delay?: number,
     autoNext?: boolean,
-    
     render?: (onSubmit: any) => React.ReactNode,
     customInput?: (value: any, onChange: (value: any) => void, onSubmit: (value: any) => void) => React.ReactNode
 }
@@ -37,8 +36,6 @@ export type configType = {
     flow: {
         [key: string]: flowNode
     },
-    open: boolean,
-    onOpenChange: (open: boolean) => void,
     primaryColor?: string,
     brandName?: string,
     favicon?: string
@@ -191,22 +188,13 @@ function SingleChoice({ message, image, items, onSelection, isDisabled, selected
                     {items.map((item, index) => (
                         <div key={index}
                             onClick={() => handleSelection(item)}
-                            className={`flex items-center justify-between p-2 rounded-lg transition-colors border border-gray-200 ${isDisabled ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer hover:bg-[#BADEFB]/20'
+                            className={`flex items-center justify-between p-2 rounded-lg transition-colors border ${selected === item ? 'border-2' : 'border-gray-200'} ${isDisabled ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer hover:bg-[#BADEFB]/20'
                                 }`}
+                            style={selected === item ? { borderColor: primaryColor } : undefined}
                         >
                             <span
                                 style={{ color: primaryColor || "black" }}
                                 className="">{item}</span>
-                            <Checkbox
-                                checked={selected === item}
-                                onCheckedChange={() => handleSelection(item)}
-                                disabled={isDisabled}
-                                style={{
-                                    ['--checkbox-color' as any]: primaryColor,
-                                    ['--checkbox-border-color' as any]: primaryColor
-                                }}
-                                className="data-[state=checked]:bg-(--checkbox-color) data-[state=checked]:border-(--checkbox-border-color) rounded-none border-gray-300 shadow-none border-2 flex items-center justify-center"
-                            />
                         </div>
                     ))}
                 </div>
@@ -309,6 +297,8 @@ export default function Chatbot({ config, onChatReload }: { config: configType, 
     const inputRef = useRef<any>(null)
     const inputbtndiv = useRef<any>(null)
     const [open, setOpen] = useState(false)
+    // useBlockPopup(open)
+    // const setBlockPopup = useSetAtom(blockPopUp)
     const [messageData, setMessageData] = useState<MessageType[]>([])
     const [input, setInput] = useState('')
     const [customInputValue, setCustomInputValue] = useState<any>('')
@@ -323,6 +313,7 @@ export default function Chatbot({ config, onChatReload }: { config: configType, 
 
     function handlechatbotclose() {
         setOpen(false)
+        // setBlockPopup(false)
     }
 
     const handleCustomInputChange = (value: any) => {
@@ -330,7 +321,7 @@ export default function Chatbot({ config, onChatReload }: { config: configType, 
         setInput(value);
     };
 
-    const handleChoiceSelection = (value: any, messageId: number) => {
+    const handleChoiceSelection = (value: any, messageId: number, step?: string) => {
         setMessageData(prev => prev.map(msg =>
             msg.id === messageId ? { ...msg, selectedValue: value } : msg
         ))
@@ -338,13 +329,13 @@ export default function Chatbot({ config, onChatReload }: { config: configType, 
         if (Array.isArray(value)) {
             setInput(value.join(", "));
             setHasSelection(value.length > 0);
+            setIsChoiceInput(true);
+            setTimeout(() => inputRef.current?.focus(), 0);
         } else {
-            setInput(value);
-            setHasSelection(!!value);
+            if (value && step) {
+                onSubmit(value, step);
+            }
         }
-        setIsChoiceInput(true);
-
-        setTimeout(() => inputRef.current?.focus(), 0);
     }
 
     async function validate(val: any, _step: string) {
@@ -525,7 +516,7 @@ export default function Chatbot({ config, onChatReload }: { config: configType, 
                         message={message.content.message}
                         image={configRef.current.image!}
                         items={message.content.items}
-                        onSelection={(val) => handleChoiceSelection(val, message.id)}
+                        onSelection={(val) => handleChoiceSelection(val, message.id, message.step)}
                         isDisabled={message.disabled}
                         selectedValue={message.selectedValue}
                         primaryColor={primaryColor}
@@ -613,7 +604,7 @@ export default function Chatbot({ config, onChatReload }: { config: configType, 
                     }
                     <img src={configRef.current.image} alt={configRef.current.image} className="w-16 h-16 object-cover rounded-full border border-primary cursor-pointer" />
                 </button>
-                <Card className={cn("absolute right-0 bottom-0 h-[75vh] max-h-[600px] w-[calc(100vw-40px)] py-0 gap-0 sm:w-96 rounded-2xl overflow-hidden flex flex-col duration-300", open && "animate-in zoom-in slide-in-from-bottom slide-in-from-right", open ? '' : 'hidden')}>
+                <Card className={cn("absolute right-0 bottom-0 h-[75vh] max-h-150 w-[calc(100vw-40px)] py-0 gap-0 sm:w-96 rounded-2xl overflow-hidden flex flex-col duration-300", open && "animate-in zoom-in slide-in-from-bottom slide-in-from-right", open ? '' : 'hidden')}>
                     <div className="text-primary-foreground px-4 py-3 flex justify-between items-center " style={{ backgroundColor: primaryColor }}>
                         <div className="flex gap-3 items-center ">
                             <img src={configRef.current.image} className="w-10 h-10 rounded-full" alt="chatbot-avtar" />
@@ -701,7 +692,7 @@ export default function Chatbot({ config, onChatReload }: { config: configType, 
                             </Button>
                         </div>
                         <div className="flex items-center justify-center gap-2 text-sm mt-2 text-gray-500">
-                            <img src={favicon} className="w-4" alt={`${brandName}/chatbot`} />
+                            <img src={favicon} width={20} height={20} alt={`${brandName}/chatbot`} />
                             {brandName}
                         </div>
                     </div>

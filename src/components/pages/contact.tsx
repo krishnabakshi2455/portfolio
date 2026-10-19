@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Send, Github, Linkedin, ExternalLink } from "lucide-react";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import { toast } from "sonner";
+import { entryUrlAtom, sessionIdAtom } from "../layout/providers";
+import { useAtomValue } from "jotai";
 
 interface ContactInfo {
     icon: React.ComponentType<{ size?: number }>;
@@ -63,6 +65,8 @@ const socialLinks: SocialLink[] = [
 ];
 
 const Contact = () => {
+    const sessionId = useAtomValue(sessionIdAtom)
+    const entryUrl = useAtomValue(entryUrlAtom)
     const [formData, setFormData] = useState<FormData>({
         name: "",
         email: "",
@@ -89,7 +93,10 @@ const Contact = () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(formData),
+                body: JSON.stringify({
+                    ...formData, entryUrl,
+                    sessionId,
+                }),
             });
 
             const data = await response.json();

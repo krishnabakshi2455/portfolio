@@ -1,11 +1,11 @@
 "use client"
 import Chatbot from "@/components/ui/chatbot"
 import { useEffect } from "react"
-import ChatbotPhoneInput from "./customcomponents/phone-input"
 import { atom, useAtom, useAtomValue } from "jotai"
 import axios from "axios"
 import { entryUrlAtom, sessionIdAtom, submitiondone } from "@/components/layout/providers"
 import { useDebounce } from "use-debounce"
+import CustomInputChatbot from "./customcomponents/CustomInputChatbot"
 
 // ─── Atom defined outside component (stable reference) ───────────────────────
 export const chatbotData = atom({
@@ -78,8 +78,10 @@ export default function ChatbotComponent({ open, onOpenChange }: { open: boolean
                 primaryColor: "#4ED1D6",
                 favicon: '/kb.png',
                 tooltip: "Let's build something great together!",
-                open,
-                onOpenChange: onOpenChange,
+                defaultOpen: {
+                    open: true,
+                    delay: 8000,
+                },
                 flow: {
 
                     // ─── GREETING ───────────────────────────────────────────────
@@ -128,7 +130,7 @@ export default function ChatbotComponent({ open, onOpenChange }: { open: boolean
                         message: "Here's how I can help:",
                         options: [
                             "🚀 Build a new web app",
-                            "📱 Build a mobile app",
+                            // "📱 Build a mobile app",
                             "🔌 Backend / API development",
                             "🛠️ Fix / improve existing project",
                             "💼 Hire me full-time",
@@ -217,20 +219,7 @@ export default function ChatbotComponent({ open, onOpenChange }: { open: boolean
                             setStore((prev) => ({ ...prev, email: value.trim() }))
                             return true
                         },
-                        next: "ask_phone_connect"
-                    },
-
-                    // ─── PHONE (connect flow) ─────────────────────────────────────
-                    ask_phone_connect: {
-                        delay: 1000,
-                        inputboxDisabled: true,
-                        inputboxHide: true,
-                        render: (onsubmit: any) => <ChatbotPhoneInput onSubmit={onsubmit} />,
-                        validation: (value: string) => {
-                            setStore((prev) => ({ ...prev, phone: value }))
-                            return true
-                        },
-                        next: "final_connect"
+                        next: "ask_phone"
                     },
 
                     // ─── EMAIL ────────────────────────────────────────────────────
@@ -238,6 +227,7 @@ export default function ChatbotComponent({ open, onOpenChange }: { open: boolean
                         delay: 1200,
                         message: "What's the best email to reach you at?",
                         validation: (value: string) => {
+                            // console.log("ask_email validation fired:", value)
                             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
                             if (!emailRegex.test(value)) return "Please enter a valid email address"
                             setStore((prev) => ({ ...prev, email: value.trim() }))
@@ -246,17 +236,22 @@ export default function ChatbotComponent({ open, onOpenChange }: { open: boolean
                         next: "ask_phone"
                     },
 
-                    // ─── PHONE ────────────────────────────────────────────────────
+                    // ─── PHONE (shared by all flows) ──────────────────────────────
                     ask_phone: {
-                        delay: 1000,
-                        inputboxDisabled: true,
-                        inputboxHide: true,
-                        render: (onsubmit: any) => <ChatbotPhoneInput onSubmit={onsubmit} />,
-                        validation: (value: string) => {
-                            setStore((prev) => ({ ...prev, phone: value }))
-                            return true
-                        },
-                        next: "final_message"
+                        delay: 1500,
+                        message:
+                            "Let's confirm you're not a robot — please enter your phone number below to verify.",
+                        customInput: (value, onChange, onSubmit) => (
+                            <CustomInputChatbot
+                                value={value}
+                                onChange={onChange}
+                                onSubmit={onSubmit}
+                            />
+                        ),
+                        next: () =>
+                            store.inquiryType === "🤝 Just want to connect"
+                                ? "final_connect"
+                                : "final_message"
                     },
 
                     // ─── FINAL MESSAGE (project/hire) ─────────────────────────────

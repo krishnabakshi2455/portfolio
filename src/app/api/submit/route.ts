@@ -1,33 +1,42 @@
-import { NextResponse } from 'next/server';
-import { JWT } from 'google-auth-library';
-import { GoogleSpreadsheet } from 'google-spreadsheet';
-import { format } from 'date-fns';
+import { NextResponse } from "next/server";
+import { JWT } from "google-auth-library";
+import { GoogleSpreadsheet } from "google-spreadsheet";
+import { format } from "date-fns";
 
 // Initialize Google Service Account JWT
 const serviceAccountAuth = new JWT({
   email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-  key: process.env?.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n'), // Fix for multi-line keys
-  scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+  key: process.env?.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n"), // Fix for multi-line keys
+  scopes: ["https://www.googleapis.com/auth/spreadsheets"],
 });
 
 const doc = new GoogleSpreadsheet(
   process.env.SPREADSHEET_ID!, // Replace with your sheet ID
   serviceAccountAuth,
 );
+// --- shared mutex, module-scoped so it's the SAME queue across all requests ---
+let writeQueue: Promise<any> = Promise.resolve();
+
+function withLock<T>(fn: () => Promise<T>): Promise<T> {
+  const result = writeQueue.then(fn, fn); // run after previous finishes, even if it errored
+  writeQueue = result.catch(() => { }); // don't let a rejection break the chain
+  return result;
+}
 
 async function sendSlackMessage(data: any) {
   function formatKey(key: string): string {
     return key
-      .replace(/([A-Z])/g, ' $1')
-      .replace(/_/g, ' ')
-      .replace(/\s+/g, ' ')
+      .replace(/([A-Z])/g, " $1")
+      .replace(/_/g, " ")
+      .replace(/\s+/g, " ")
       .trim()
       .replace(/^./, (c) => c.toUpperCase());
   }
 
   function formatValue(val: any): string {
-    if (Array.isArray(val)) return val.join(', ');
-    if (typeof val === 'object') return '```' + JSON.stringify(val, null, 2) + '```';
+    if (Array.isArray(val)) return val.join(", ");
+    if (typeof val === "object")
+      return "```" + JSON.stringify(val, null, 2) + "```";
     return `${val}`;
   }
 
@@ -35,20 +44,20 @@ async function sendSlackMessage(data: any) {
 
   // Auto-expand keys
   for (const [key, value] of Object.entries(data)) {
-    if (value === null || value === undefined || value === '') continue;
+    if (value === null || value === undefined || value === "") continue;
 
     const formattedKey = formatKey(key);
     const formattedValue = formatValue(value);
 
     // Skip Source Url
     const notToSendOnSlack = [
-      'Session Id',
-      'Ip Location',
-      'Form Id',
-      'Created At',
-      'Source Url',
-      'Entry Url',
-      'Referrer Url'
+      "Session Id",
+      // 'Ip Location',
+      "Form Id",
+      "Created At",
+      "Source Url",
+      "Entry Url",
+      "Referrer Url",
     ];
 
     if (notToSendOnSlack.includes(formatKey(key))) continue;
@@ -56,8 +65,8 @@ async function sendSlackMessage(data: any) {
     message += `*${formattedKey}:* ${formattedValue}\n`;
   }
   await fetch(`${process.env.SLACK_WEBHOOK_URL!}`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ text: message }),
   });
 }
@@ -66,8 +75,8 @@ async function submitToSheet(data: Record<string, any>) {
   try {
     await doc.loadInfo();
 
-    const sheet = doc.sheetsByTitle['Sheet1'];
-    if (!sheet) throw new Error('Sheet1 sheet not found');
+    const sheet = doc.sheetsByTitle["Sheet1"];
+    if (!sheet) throw new Error("Sheet1 not found");
 
     // Load existing headers
     await sheet.loadHeaderRow();
@@ -76,7 +85,8 @@ async function submitToSheet(data: Record<string, any>) {
 
     // Find missing headers from data
     const newHeaders = Object.keys(data).filter(
-      (key) => data[key] != null && data[key] !== '' && !existingHeaders.includes(key),
+      (key) =>
+        data[key] != null && data[key] !== "" && !existingHeaders.includes(key),
     );
 
     // If new fields exist → extend header row
@@ -88,7 +98,9 @@ async function submitToSheet(data: Record<string, any>) {
     const rows = await sheet.getRows();
 
     const existingRow = rows.find(
-      (row) => row.get('sessionId') === data.sessionId && row.get('formId') === data.formId,
+      (row) =>
+        row.get("sessionId") === data.sessionId &&
+        row.get("formId") === data.formId,
     );
 
     if (existingRow) {
@@ -101,13 +113,41 @@ async function submitToSheet(data: Record<string, any>) {
     }
   } catch (error) {
     console.error(error);
-    throw new Error('Error while sending to Google Sheets');
+    throw new Error("Error while sending to Google Sheets");
+  }
+}
+
+async function doesLeadAlreadyContainPhone(
+  sessionId: string,
+  formId: string,
+) {
+  try {
+    await doc.loadInfo();
+
+    const sheet = doc.sheetsByTitle["Sheet1"];
+    if (!sheet) throw new Error("Sheet1 not found");
+    const rows = await sheet.getRows();
+
+    const existingRow = rows.find(
+      (row) =>
+        row.get("sessionId") === sessionId && row.get("formId") === formId,
+    );
+
+    const phone = existingRow?.get("phone")?.toString()?.trim();
+
+    return Boolean(phone);
+  } catch (error) {
+    console.error(error);
+
+    return false;
   }
 }
 
 export async function POST(req: any) {
   try {
-    const ip = (req.headers.get('x-forwarded-for') ?? '127.0.0.1').split(',')[0];
+    const ip = (req.headers.get("x-forwarded-for") ?? "127.0.0.1").split(
+      ",",
+    )[0];
 
     // Use an IP Geolocation API (e.g., ipapi.co)
     let country, region;
@@ -122,17 +162,22 @@ export async function POST(req: any) {
 
     const dataToSend = {
       ...data,
-      ipLocation: region + ', ' + country,
+      ipLocation: region + ", " + country,
       createdAt: format(
-        new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' })),
-        'dd,LLL yyyy hh:mm aa',
+        new Date(
+          new Date().toLocaleString("en-US", { timeZone: "Asia/Kolkata" }),
+        ),
+        "dd,LLL yyyy hh:mm aa",
       ),
     };
 
+    const phoneAlreadyExists = await doesLeadAlreadyContainPhone(
+      data.sessionId,
+      data.formId,
+    );
     // Send Data
-    await submitToSheet(dataToSend);
-
-    if (data.formId !== 'chatbot' || data.appointmentDate) {
+    await withLock(() => submitToSheet(dataToSend));
+    if (data.formId !== "chatbot" || (data.phone && !phoneAlreadyExists)) {
       sendSlackMessage(dataToSend);
     }
 

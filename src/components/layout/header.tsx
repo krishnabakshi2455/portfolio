@@ -46,7 +46,7 @@ const Header = () => {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                     >
-                        krishna
+                        <img src="/kb.png" alt="logo" width="40" height="40" />
                     </motion.span>
                 </Link>
 

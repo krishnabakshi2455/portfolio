@@ -5,11 +5,16 @@ import Header from "./header"
 import Footer from "./footer"
 import { Toaster } from "../ui/sonner"
 import UserEngagement from "../user-engagement"
+import { usePathname } from 'next/navigation';
 
 export const entryUrlAtom = atom('')
 export const sessionIdAtom = atom('')
 export const submitiondone = atom<boolean | null>(false)
 export function Providers({ children }: { children: React.ReactNode }) {
+    const pathname = usePathname();
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [pathname]);
     const setEntryUrl = useSetAtom(entryUrlAtom)
     const setSessionId = useSetAtom(sessionIdAtom)
 
@@ -20,7 +25,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
             <Header />
             {children}
             <Footer />
-            <UserEngagement/>
+            <UserEngagement />
             <Toaster toastOptions={{ className: 'bottom-14 sm:bottom-0' }} />
         </>
     )
